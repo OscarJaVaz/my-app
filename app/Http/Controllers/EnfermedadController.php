@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Enfermedad;
 use Illuminate\Http\Request;
-
+//CONTROLADORES
 class EnfermedadController extends Controller
 {
     public function create(Request $request){
