@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\DoctorController;
@@ -40,3 +40,8 @@ Route::get('citas', [CitaController::class, 'list']);
 Route::get('cita', [CitaController::class, 'get']);
 Route::post('cita/crear', [CitaController::class, 'create']);
 Route::post('cita/borrar', [CitaController::class, 'delete']);
+/********API PRODUCTOS********* */
+Route::get('productos', [ProductoController::class, 'list']);
+Route::get('producto', [ProductoController::class, 'get']);
+Route::post('producto/crear', [ProductoController::class, 'create']);
+Route::post('producto/borrar', [ProductoController::class, 'delete']);
