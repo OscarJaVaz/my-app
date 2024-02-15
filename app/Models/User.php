@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Roles;
 
 class User extends Authenticatable
 {
@@ -41,4 +42,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Asignar el rol por defecto al crear un usuario
+        static::creating(function ($user) {
+            // Encuentra el rol "administrador" por nombre
+            $adminRole = Roles::where('nombre', 'admin')->first();
+
+            if ($adminRole) {
+                $user->idRol = $adminRole->id;
+            }
+        });
+    }
 }

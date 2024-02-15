@@ -5,6 +5,7 @@ use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\EnfermedadController;
 use App\Http\Controllers\CitaController;
+use App\Http\Controllers\ClienteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -45,3 +46,8 @@ Route::get('productos', [ProductoController::class, 'list']);
 Route::get('producto', [ProductoController::class, 'get']);
 Route::post('producto/crear', [ProductoController::class, 'create']);
 Route::post('producto/borrar', [ProductoController::class, 'delete']);
+/****API CLIENTE (PACIENTE) */
+Route::get('clientes', [ClienteController::class, 'list']);
+Route::get('cliente', [ClienteController::class, 'get']);
+Route::post('cliente/crear', [ClienteController::class, 'create']);
+Route::post('cliente/borrar', [ClienteController::class, 'delete']);
