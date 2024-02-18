@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('enfermedad');
             $table->date('fecha');
             $table->time('hora');
+            $table->string('codigo_qr',500000);
             $table->timestamps();
         });
     }

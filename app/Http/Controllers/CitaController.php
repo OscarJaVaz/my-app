@@ -7,23 +7,25 @@ use Illuminate\Http\Request;
 
 class CitaController extends Controller
 {
-    public function create(Request $request){
-        if($request->id==0){
-            $cita = new Cita();
-        }
-        else{
-            $cita = Cita::find($request->id);
-        }
-        $cita->paciente = $request->paciente;
-        $cita->doctor = $request->doctor;
-        $cita->enfermedad = $request->enfermedad;
-        $cita->fecha= $request->fecha;
-        $cita->hora= $request->hora;
-
-       $cita->save();
-
-        return $cita;
+    public function create(Request $request)
+{
+    if ($request->id == 0) {
+        $cita = new Cita();
+    } else {
+        $cita = Cita::find($request->id);
     }
+    $cita->paciente = $request->paciente;
+    $cita->doctor = $request->doctor;
+    $cita->enfermedad = $request->enfermedad;
+    $cita->fecha = $request->fecha;
+    $cita->hora = $request->hora;
+    $cita->codigo_qr = $request->codigo_qr; // Guardar el código QR
+    
+    $cita->save();
+
+    return $cita;
+}
+
 
     public function get(Request $req)
     {
