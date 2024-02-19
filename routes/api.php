@@ -6,6 +6,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\EnfermedadController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ClienteLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -51,3 +52,4 @@ Route::get('clientes', [ClienteController::class, 'list']);
 Route::get('cliente', [ClienteController::class, 'get']);
 Route::post('cliente/crear', [ClienteController::class, 'create']);
 Route::post('cliente/borrar', [ClienteController::class, 'delete']);
+Route::post('logincliente', [ClienteLoginController::class, 'login']);

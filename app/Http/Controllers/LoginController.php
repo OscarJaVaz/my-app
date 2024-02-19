@@ -31,4 +31,5 @@ class LoginController extends Controller
             return json_encode($arr);
         }
     }
+    
 }

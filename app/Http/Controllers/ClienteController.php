@@ -18,6 +18,7 @@ class ClienteController extends Controller
         $cliente->apellido = $request->apellido;
         $cliente->email = $request->email;
         $cliente->telefono = $request->telefono;
+        //$cliente->contrasena = $request->contrasena; 
         $cliente->contrasena = Hash::make($request->contrasena); 
         $cliente->domicilio = $request->domicilio;
         
