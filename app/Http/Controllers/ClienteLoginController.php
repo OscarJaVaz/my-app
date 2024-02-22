@@ -18,10 +18,9 @@ class ClienteLoginController extends Controller
         $cliente = DB::table('clientes')
                         ->select('id', 'email', 'contrasena')
                         ->where('email', $email)
-                        ->where('contrasena', $password)
                         ->first();
     
-        if ($cliente) {
+        if ($cliente && Hash::check($password, $cliente->contrasena)) {
             $arr = array(
                 'idCliente' => $cliente->id,
                 'email' => $cliente->email,
@@ -41,7 +40,4 @@ class ClienteLoginController extends Controller
             return json_encode($arr);
         }
     }
-    
-
-
 }
