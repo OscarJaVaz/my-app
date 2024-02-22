@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('telefono');
             $table->string('contrasena');
             $table->string('domicilio');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

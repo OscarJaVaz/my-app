@@ -14,30 +14,38 @@ class ClienteLoginController extends Controller
     {
         $email = $request->email;
         $password = $request->contrasena;
-    
+
         $cliente = DB::table('clientes')
                         ->select('id', 'nombre', 'email', 'contrasena') // Incluimos 'nombre' en la selección
                         ->where('email', $email)
                         ->first();
-    
+
         if ($cliente && Hash::check($password, $cliente->contrasena)) {
+            // Autenticación exitosa
+            $clienteModel = \App\Models\Cliente::find($cliente->id); // Suponiendo que tu modelo se llama Cliente
+            $clienteModel->tokens()->delete(); // Eliminar tokens anteriores si existen
+
+            $token = $clienteModel->createToken('AppMobile')->plainTextToken;
+
             $arr = array(
                 'idCliente' => $cliente->id,
-                'nombre' => $cliente->nombre, 
+                'nombre' => $cliente->nombre,
                 'email' => $cliente->email,
+                'token' => $token,
                 'error' => ''
             );
-    
+
             Log::channel('custom')->info('Cliente autenticado: ' . $cliente->email); // Registro de información
-    
+
             return json_encode($arr);
         } else {
+            // Autenticación fallida
             $arr = array(
                 'idCliente' => 0,
                 'error' => 'No existe el cliente o la contraseña es inválida'
             );
             Log::channel('custom')->error('Autenticación fallida: ' . $email); // Registro de error
-    
+
             return json_encode($arr);
         }
     }
