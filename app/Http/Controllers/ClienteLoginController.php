@@ -23,7 +23,7 @@ class ClienteLoginController extends Controller
         if ($cliente && Hash::check($password, $cliente->contrasena)) {
             $arr = array(
                 'idCliente' => $cliente->id,
-                'nombre' => $cliente->nombre, // Agregamos el nombre del cliente
+                'nombre' => $cliente->nombre, 
                 'email' => $cliente->email,
                 'error' => ''
             );
