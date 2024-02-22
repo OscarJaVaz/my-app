@@ -22,8 +22,8 @@ class ClienteLoginController extends Controller
 
         if ($cliente && Hash::check($password, $cliente->contrasena)) {
             // Autenticación exitosa
-            $clienteModel = \App\Models\Cliente::find($cliente->id); // Suponiendo que tu modelo se llama Cliente
-            $clienteModel->tokens()->delete(); // Eliminar tokens anteriores si existen
+            $clienteModel = \App\Models\Cliente::find($cliente->id); 
+            $clienteModel->tokens()->delete(); 
 
             $token = $clienteModel->createToken('AppMobile')->plainTextToken;
 
