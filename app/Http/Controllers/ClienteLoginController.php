@@ -16,13 +16,14 @@ class ClienteLoginController extends Controller
         $password = $request->contrasena;
     
         $cliente = DB::table('clientes')
-                        ->select('id', 'email', 'contrasena')
+                        ->select('id', 'nombre', 'email', 'contrasena') // Incluimos 'nombre' en la selección
                         ->where('email', $email)
                         ->first();
     
         if ($cliente && Hash::check($password, $cliente->contrasena)) {
             $arr = array(
                 'idCliente' => $cliente->id,
+                'nombre' => $cliente->nombre, // Agregamos el nombre del cliente
                 'email' => $cliente->email,
                 'error' => ''
             );
