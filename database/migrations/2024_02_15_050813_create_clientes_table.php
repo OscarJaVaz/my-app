@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('idRol');
             $table->foreign('idRol')->references('id')->on('roles')->onDelete('cascade');
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->string('apellido');
             $table->string('email');
             $table->string('telefono');
