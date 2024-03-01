@@ -7,6 +7,7 @@ use App\Http\Controllers\EnfermedadController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ClienteLoginController;
+use App\Http\Controllers\ComprasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -53,3 +54,8 @@ Route::get('cliente', [ClienteController::class, 'get']);
 Route::post('cliente/crear', [ClienteController::class, 'create']);
 Route::post('cliente/borrar', [ClienteController::class, 'delete']);
 Route::post('logincliente', [ClienteLoginController::class, 'login']);
+/****API Compras */
+Route::get('compras', [ComprasController::class, 'list']);
+Route::get('compra', [ComprasController::class, 'get']);
+Route::post('compra/crear', [ComprasController::class, 'create']);
+Route::post('compra/borrar', [ComprasController::class, 'delete']);

@@ -7,25 +7,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Cliente; // Asegúrate de importar el modelo Cliente
 
 class ClienteLoginController extends Controller
 {
     public function login(Request $request)
     {
-        $email = $request->email;
-        $password = $request->contrasena;
+        $cliente = Cliente::where('email', $request->email)->first();
 
-        $cliente = DB::table('clientes')
-                        ->select('id', 'nombre', 'email', 'contrasena') // Incluimos 'nombre' en la selección
-                        ->where('email', $email)
-                        ->first();
+        if ($cliente && Hash::check($request->contrasena, $cliente->contrasena)) {
+            Auth::login($cliente); // Autenticar al cliente
 
-        if ($cliente && Hash::check($password, $cliente->contrasena)) {
-            // Autenticación exitosa
-            $clienteModel = \App\Models\Cliente::find($cliente->id); 
-            $clienteModel->tokens()->delete(); 
+            $cliente->tokens()->delete();
 
-            $token = $clienteModel->createToken('AppMobile')->plainTextToken;
+            $token = $cliente->createToken('AppMobile')->plainTextToken;
 
             $arr = array(
                 'idCliente' => $cliente->id,
@@ -39,12 +34,11 @@ class ClienteLoginController extends Controller
 
             return json_encode($arr);
         } else {
-            // Autenticación fallida
             $arr = array(
-                'idCliente' => 0,
+                'idCliente' => 0,'token' => '',
                 'error' => 'No existe el cliente o la contraseña es inválida'
             );
-            Log::channel('custom')->error('Autenticación fallida: ' . $email); // Registro de error
+            Log::channel('custom')->error('Autenticación fallida: ' . $request->email); // Registro de error
 
             return json_encode($arr);
         }
