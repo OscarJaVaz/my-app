@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('paciente');
             $table->string('doctor');
-            $table->string('enfermedad');
+            $table->string('sintomas');
             $table->date('fecha');
             $table->time('hora');
             $table->string('codigo_qr',500000);

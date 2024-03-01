@@ -16,7 +16,7 @@ class CitaController extends Controller
     }
     $cita->paciente = $request->paciente;
     $cita->doctor = $request->doctor;
-    $cita->enfermedad = $request->enfermedad;
+    $cita->sintomas = $request->sintomas;
     $cita->fecha = $request->fecha;
     $cita->hora = $request->hora;
     $cita->codigo_qr = $request->codigo_qr; // Guardar el código QR
