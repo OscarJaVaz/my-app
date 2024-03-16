@@ -59,3 +59,6 @@ Route::get('compras', [ComprasController::class, 'list']);
 Route::get('compra', [ComprasController::class, 'get']);
 Route::post('compra/crear', [ComprasController::class, 'create']);
 Route::post('compra/borrar', [ComprasController::class, 'delete']);
+/****Ver compras por el usuario */
+Route::get('productoComprado', [ComprasController::class, 'index']);
+

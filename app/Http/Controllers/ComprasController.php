@@ -48,4 +48,17 @@ class ComprasController extends Controller
 
         return "ok";
     }
+
+    public function index(Request $request)
+    {
+        // Obtén el nombre del cliente desde la solicitud enviada por React
+        $nombreCliente = $request->input('nombre_cliente');
+
+        // Busca las compras realizadas por el cliente con el nombre especificado
+        $compras = Compras::where('nombre_cliente', $nombreCliente)->get();
+
+        // Retorna las compras como respuesta JSON
+        return response()->json($compras);
+    }
+    
 }
