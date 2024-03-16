@@ -45,4 +45,13 @@ class CitaController extends Controller
 
         return "ok";
     }
+
+    public function controlCita()
+    {
+        // Realizar la consulta para obtener las fechas y horas de las citas
+        $citas = Cita::select('fecha', 'hora')->get();
+        
+        // Devolver los resultados en formato JSON
+        return response()->json($citas);
+    }
 }

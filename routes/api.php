@@ -61,4 +61,5 @@ Route::post('compra/crear', [ComprasController::class, 'create']);
 Route::post('compra/borrar', [ComprasController::class, 'delete']);
 /****Ver compras por el usuario */
 Route::get('productoComprado', [ComprasController::class, 'index']);
-
+/****Obtener fechas y horas disponibles */
+Route::get('controlCita', [CitaController::class, 'controlCita']);
