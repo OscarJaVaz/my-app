@@ -65,3 +65,7 @@ Route::get('productoComprado', [ComprasController::class, 'index']);
 Route::get('controlCita', [CitaController::class, 'controlCita']);
 /****Ver perfil */
 Route::get('perfil', [ClienteController::class, 'perfil']);
+/****Atualizar contraseña*/
+Route::put('/actualizar-contraseña', [ClienteController::class, 'updatePassword']);
+
+

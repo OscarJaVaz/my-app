@@ -57,4 +57,28 @@ class ClienteController extends Controller
     return response()->json($cliente);
 }
 
+public function updatePassword(Request $request)
+{
+    $request->validate([
+        'nombre_usuario' => 'required|string',
+        'contrasena_actual' => 'required|string',
+        'nueva_contrasena' => 'required|string|min:6',
+    ]);
+
+    // Obtén el cliente con el nombre de usuario proporcionado
+    $cliente = Cliente::where('nombre', $request->nombre_usuario)->first();
+
+    // Verifica si el cliente existe y si la contraseña actual es válida
+    if (!$cliente || !Hash::check($request->contrasena_actual, $cliente->contrasena)) {
+        return response()->json(['message' => 'Credenciales incorrectas'], 401);
+    }
+
+    // Actualiza la contraseña del cliente
+    $cliente->contrasena = Hash::make($request->nueva_contrasena);
+    $cliente->save();
+
+    // Retorna una respuesta de éxito
+    return response()->json(['message' => 'Contraseña actualizada correctamente'], 200);
 }
+}
+
