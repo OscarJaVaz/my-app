@@ -63,3 +63,5 @@ Route::post('compra/borrar', [ComprasController::class, 'delete']);
 Route::get('productoComprado', [ComprasController::class, 'index']);
 /****Obtener fechas y horas disponibles */
 Route::get('controlCita', [CitaController::class, 'controlCita']);
+/****Ver perfil */
+Route::get('perfil', [ClienteController::class, 'perfil']);

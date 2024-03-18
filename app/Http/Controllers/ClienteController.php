@@ -45,4 +45,16 @@ class ClienteController extends Controller
 
         return "ok";
     }
+    public function perfil(Request $request)
+{
+    // Obtén el nombre de usuario desde la solicitud enviada por React
+    $nombreUsuario = $request->input('nombre_usuario');
+
+    // Busca los datos del cliente con el nombre de usuario especificado
+    $cliente = Cliente::where('nombre', $nombreUsuario)->first();
+
+    // Retorna los datos del cliente como respuesta JSON
+    return response()->json($cliente);
+}
+
 }
