@@ -8,6 +8,7 @@ use App\Http\Controllers\CitaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ClienteLoginController;
 use App\Http\Controllers\ComprasController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -67,5 +68,9 @@ Route::get('cls', [CitaController::class, 'controlCita']);
 Route::get('perfil', [ClienteController::class, 'perfil']);
 /****Atualizar contraseña*/
 Route::put('/actualizar-contraseña', [ClienteController::class, 'updatePassword']);
+/****Ver perfil doctor */
+Route::get('perfildoc', [UsersController::class, 'perfil']);
+/****Atualizar contraseña*/
+Route::put('/actualizarcontraseña', [UsersController::class, 'updatePassword']);
 
 

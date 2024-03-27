@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Compras;
+use Illuminate\Support\Facades\Hash;
 class ComprasController extends Controller
 {
     public function create(Request $request){
@@ -21,10 +22,10 @@ class ComprasController extends Controller
         $compras->direccion = $request->direccion;
         $compras->municipio = $request->municipio;
         $compras->referencia = $request->referencia;
-        $compras->num_tarjeta = $request->num_tarjeta;
+        $compras->num_tarjeta =Hash::make ($request->num_tarjeta);
         $compras->nom_titular = $request->nom_titular;
-        $compras->expiracion = $request->expiracion;
-        $compras->cvc = $request->cvc;
+        $compras->expiracion = Hash::make ($request->expiracion);
+        $compras->cvc = Hash::make ($request->cvc);
 
         $compras->save();
         return $compras;
