@@ -54,4 +54,18 @@ class CitaController extends Controller
         // Devolver los resultados en formato JSON
         return response()->json($citas);
     }
+
+    public function citasPorCliente(Request $request)
+    {
+        // Obtén el nombre del cliente desde la solicitud enviada por React
+        $nombreCliente = $request->input('nombre_cliente');
+
+        // Realiza la consulta para obtener las citas del cliente
+        $citas = Cita::where('paciente', $nombreCliente)
+                     ->select('paciente', 'doctor', 'sintomas', 'fecha', 'hora')
+                     ->get();
+        
+        // Devuelve las citas en formato JSON
+        return response()->json($citas);
+    }
 }

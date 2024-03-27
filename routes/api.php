@@ -72,5 +72,6 @@ Route::put('/actualizar-contraseña', [ClienteController::class, 'updatePassword
 Route::get('perfildoc', [UsersController::class, 'perfil']);
 /****Atualizar contraseña*/
 Route::put('/actualizarcontraseña', [UsersController::class, 'updatePassword']);
-
+/****Obtener citas cliente paara calendario*/
+Route::get('/calendariocliente', [CitaController::class, 'citasPorCliente']);
 
